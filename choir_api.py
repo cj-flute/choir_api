@@ -1,4 +1,14 @@
+import datetime
+import os
+
 from flask import Flask, jsonify, request
+from pymongo import MongoClient
+# from dotenv import load_dotenv
+
+# Load config from .env file
+# load_dotenv()
+# MONGODB_URL = os.environ["MONGODB_URL"]
+
 
 app = Flask(__name__)
 
@@ -10,10 +20,14 @@ choristers = [
     {'id': 4, 'name': 'Michael Brown', 'voice_part': 'Bass'}
 ]
 
+# return all choristers
+
 
 @app.route('/api/choristers', methods=['GET'])
 def get_choristers():
     return jsonify({'choristers': choristers})
+
+# return a single chorister
 
 
 @app.route('/api/choristers/<int:chorister_id>', methods=['GET'])
